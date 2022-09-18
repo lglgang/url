@@ -32,4 +32,32 @@ for i in range(h):
                 img.save(f)
         f.close()
         
-        
+ #使用特定字体
+ '''
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple qrcode
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple Image
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pandas
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple xlrd
+http://www.downcc.com/font/248408.html  字体下载
+'''
+import qrcode
+import pandas as pd
+from PIL import Image, ImageDraw,ImageFont
+font1 = ImageFont.truetype('msyh.ttf', 15)
+
+df=pd.read_excel('tel测试.xlsx')
+h,w=df.shape
+for i in range(h):
+        name1=df.at[i,'A']
+        tel1=df.at[i,'B']
+        str1=df.at[i,'C']
+        print(str1)
+        img=qrcode.make(str1)
+        draw=ImageDraw.Draw(img)
+        draw.text((40,330),"联系人 "+str(name1)+" : "+str(tel1),font=font1)
+        namefile=name1+".png"
+        print(namefile)
+        with open(namefile,'wb') as f:
+                img.save(f)
+        f.close()
+	
