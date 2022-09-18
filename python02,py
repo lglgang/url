@@ -9,3 +9,27 @@ k = cv.waitKey(0)
 if k == ord("s"):
     cv.imwrite("a2.png", img)
     
+# 生成电话号码的二维码
+
+'''
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple qrcode
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple Image
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pandas
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple xlrd
+'''
+import qrcode
+import pandas as pd
+df=pd.read_excel('tel.xlsx')
+h,w=df.shape
+for i in range(h):
+        name1=df.at[i,'A']
+        str1=df.at[i,'C']
+        print(str1)
+        img=qrcode.make(str1) #MECARD:N:市长热线;TEL:02288908890;;  字符串的格式
+        namefile=name1+".png"
+        print(namefile)
+        with open(namefile,'wb') as f:
+                img.save(f)
+        f.close()
+        
+        
