@@ -36,5 +36,24 @@ try:
 except smtplib.SMTPException:
     print("Error: 无法发送邮件")
     
-    
+#使用python读取参数文件
+a.txt文件的内容
+[config]
+host=xx
+user=yy
+
+import configparser
+cf=configparser.ConfigParser()
+cf.read("a.txt")
+secs=cf.sections()
+print(secs)
+options=cf.options("config")
+print(options)
+items=cf.items("config")
+print(items)
+host=cf.get("config","host")
+print(host)
+
+
+
     
